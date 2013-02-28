@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  - var photos = _.chain(contents.img.photos._.files).filter(function(item) {
+  -   return item.filename.match(/IMG_\d{4}\.thumbnail\.jpg/);
+  - }).value()
+
+  header.page-header
+    h1= page.title
+  - for (var i = 0; i < photos.length / 6; i++)
+    .row-fluid
+      ul.photo-list.thumbnails
+        - for (var j = 0; j < 6 && i * 6 + j < photos.length; j++)
+          - var photo = photos[i * 6 + j] 
+          li.photo.span2
+            a.thumbnail(data-image=photo.filename.replace(/\.thumbnail/, ''), rel='gallery', data-toggle='lightbox', data-target='#lightbox')
+              img(src=photo.filename)
+  #lightbox.lightbox.hide.fade(tabindex=-1, role='dialog', aria-hidden=true)
+    .lightbox-header
+      button.close(type='button', data-dismiss='lightbox', aria-hidden='true') &times;
+    .lightbox-content
+

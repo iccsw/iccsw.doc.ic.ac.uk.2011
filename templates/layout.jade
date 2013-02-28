@@ -1,0 +1,53 @@
+!!! 5
+html(lang='en')
+  head
+    block head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+      title
+        block title
+          = locals.name
+      link(rel='stylesheet', href='/2011/css/bootstrap.min.css')
+      link(rel='stylesheet', href='/2011/css/bootstrap-responsive.min.css')
+      link(rel='stylesheet', href='/2011/css/bootstrap-lightbox.min.css')
+      link(rel='stylesheet', href='/2011/css/app.css')
+  body
+    nav.navbar.navbar-fixed-top.navbar-inverse
+      .navbar-inner
+        .container
+          include menu
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='/2011/', title=locals.name, rel='home')= locals.name
+          .nav-collapse.collapse
+            ul.nav
+              +menu('Programme', '/2011/programme.html')
+              +menu('Keynotes', '/2011/keynotes.html')
+              +menu('Panels', '/2011/panels.html')
+              +menu('Location', '/2011/location.html')
+              +menu('Organisation', '/2011/organisation.html')
+              +menu('Proceedings', '/2011/proceedings.html')
+              +menu('Photos', '/2011/photos.html')
+    .container
+      header.subhead
+        block subhead
+          a(href=locals.url)
+            img(alt=locals.name, src='img/logo.jpg')
+      section.content
+        block content
+    footer.footer
+      div.container
+        block footer
+          p Copyright &copy; 2011 
+            a(href='http://www3.imperial.ac.uk/') Imperial College London
+            , 
+            a(href='http://www3.imperial.ac.uk/computing/') Department of Computing
+            Research Students
+    script(src='http://code.jquery.com/jquery-latest.js')
+    script(src='/2011/js/bootstrap.min.js')
+    script(src='/2011/js/bootstrap-lightbox.min.js')
+    script(src='/2011/js/app.js')
+    include analytics
+    +analytics('UA-22691589-2')
